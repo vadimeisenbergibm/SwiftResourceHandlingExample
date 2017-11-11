@@ -24,11 +24,17 @@ let package = Package(
         .library(
             name: "ResourceHandling",
             targets: ["ResourceHandling"]),
+        .executable(
+            name: "ResourceHandlingSample",
+            targets: ["ResourceHandlingSample"]),
     ],
     targets: [
         .target(
             name: "ResourceHandling",
             dependencies: []),
+        .target(
+            name: "ResourceHandlingSample",
+            dependencies: ["ResourceHandling"]),
         .testTarget(
             name: "ResourceHandlingTests",
             dependencies: ["ResourceHandling"]),
