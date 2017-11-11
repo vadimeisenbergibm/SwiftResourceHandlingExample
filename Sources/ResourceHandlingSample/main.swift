@@ -16,4 +16,9 @@
 
 import ResourceHandling
 print("reading contents of foo.txt:")
-print(Reader().read(resource: "foo", ofType: "txt"))
+do {
+    let contents = try Reader().read(resource: "foo", ofType: "txt")
+    print(contents)
+} catch {
+    print(error)
+}

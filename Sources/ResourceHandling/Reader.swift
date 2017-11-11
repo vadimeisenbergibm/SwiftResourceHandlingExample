@@ -14,10 +14,36 @@
  * limitations under the License.
  **/
 
-public struct Reader {
+import Foundation
+
+public enum ReaderError: Error {
+    case resourceNotFound
+    case readFailed(Error)
+    case convertToStringFailed
+}
+
+public class Reader {
     public init() {}
 
-    public func read(resource: String, ofType: String) -> String {
-        return "bar\n"
+    public func read(resource: String, ofType type: String) throws -> String {
+        let bundle = Bundle(for: Swift.type(of: self))
+        // uncomment the following lines to print the directory
+        // the resource files are expected to be located
+        //print(bundle.resourcePath ?? "no resource path provided")
+
+        guard let resourcePath = bundle.path(forResource: resource, ofType: type) else {
+            throw ReaderError.resourceNotFound
+        }
+
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: resourcePath))
+            guard let string = String(data: data, encoding: String.Encoding.utf8) else {
+                throw ReaderError.convertToStringFailed
+            }
+
+            return string
+        } catch {
+            throw ReaderError.readFailed(error)
+        }
     }
 }
