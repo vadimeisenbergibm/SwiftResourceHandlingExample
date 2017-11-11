@@ -9,3 +9,6 @@ An example Swift project to demonstrate resource handling in Swift - accessing r
 
 # Attributions
 * Uses a code snippet from https://github.com/IBM-Swift/Bridging, in [Reader.swift](https://github.com/vadimeisenbergibm/SwiftResourceHandlingExample/blob/master/Sources/ResourceHandling/Reader.swift)
+
+# License
+Apache 2.0
