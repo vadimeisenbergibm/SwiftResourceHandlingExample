@@ -25,10 +25,7 @@ else ifeq ($(UNAME), Linux)
 EXECUTABLE_DIRECTORY = x86_64-unknown-linux
 endif
 
-./.build/${EXECUTABLE_DIRECTORY}/debug/ResourceHandlingSample:
-	make build
-
-run: ./.build/${EXECUTABLE_DIRECTORY}/debug/ResourceHandlingSample
+run: build
 	./.build/${EXECUTABLE_DIRECTORY}/debug/ResourceHandlingSample
 
 test:
