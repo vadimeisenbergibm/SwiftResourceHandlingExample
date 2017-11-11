@@ -15,11 +15,21 @@
 build:
 	swift build
 
-./.build/x86_64-apple-macosx10.10/debug/ResourceHandlingSample:
+UNAME = ${shell uname}
+
+# set EXECUTABLE_DIRECTORY according to your specific environment
+# run swift build and see where the output executable is created
+ifeq ($(UNAME), Darwin)
+EXECUTABLE_DIRECTORY = x86_64-apple-macosx10.10
+else ifeq ($(UNAME), Linux)
+EXECUTABLE_DIRECTORY = x86_64-unknown-linux
+endif
+
+./.build/${EXECUTABLE_DIRECTORY}/debug/ResourceHandlingSample:
 	make build
 
-run: ./.build/x86_64-apple-macosx10.10/debug/ResourceHandlingSample
-	./.build/x86_64-apple-macosx10.10/debug/ResourceHandlingSample
+run: ./.build/${EXECUTABLE_DIRECTORY}/debug/ResourceHandlingSample
+	./.build/${EXECUTABLE_DIRECTORY}/debug/ResourceHandlingSample
 
 test:
 	swift test
