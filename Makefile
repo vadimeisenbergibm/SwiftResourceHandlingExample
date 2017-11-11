@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-build:
-	swift build
-
 UNAME = ${shell uname}
 
 # set EXECUTABLE_DIRECTORY according to your specific environment
@@ -25,10 +22,20 @@ else ifeq ($(UNAME), Linux)
 EXECUTABLE_DIRECTORY = x86_64-unknown-linux
 endif
 
+TEST_DIRECTORY = ./.build/${EXECUTABLE_DIRECTORY}/debug/SwiftResourceHandlingExamplePackageTests.xctest/Contents/Resources
+
+build: copyResources
+	swift build
+
+copyResources:
+	cp Resources/* ./.build/${EXECUTABLE_DIRECTORY}/debug
+
 run: build
 	./.build/${EXECUTABLE_DIRECTORY}/debug/ResourceHandlingSample
 
 test:
+	mkdir -p ${TEST_DIRECTORY}
+	cp Resources/* ${TEST_DIRECTORY}
 	swift test
 
 .PHONY: run build test
