@@ -6,3 +6,6 @@
 # Swift Resource Handling Example
 
 An example Swift project to demonstrate resource handling in Swift - accessing resources thru `Bundle`.
+
+# Attributions
+* Uses a code snippet from https://github.com/IBM-Swift/Bridging, in [Reader.swift](https://github.com/vadimeisenbergibm/SwiftResourceHandlingExample/blob/master/Sources/ResourceHandling/Reader.swift)
