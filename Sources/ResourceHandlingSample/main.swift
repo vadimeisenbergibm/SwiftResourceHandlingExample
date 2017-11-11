@@ -15,5 +15,5 @@
  **/
 
 import ResourceHandling
-
-print(Reader().text)
+print("reading contents of foo.txt:")
+print(Reader().read(resource: "foo", ofType: "txt"))

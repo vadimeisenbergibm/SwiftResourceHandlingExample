@@ -16,5 +16,8 @@
 
 public struct Reader {
     public init() {}
-    public var text = "Hello, World!"
+
+    public func read(resource: String, ofType: String) -> String {
+        return "bar\n"
+    }
 }

@@ -19,7 +19,7 @@ import ResourceHandling
 
 class ResourceHandlingTests: XCTestCase {
     func testExample() {
-        XCTAssertEqual(Reader().text, "Hello, World!")
+        XCTAssertEqual(Reader().read(resource: "foo", ofType: "txt"), "bar\n")
     }
 
     static var allTests = [
