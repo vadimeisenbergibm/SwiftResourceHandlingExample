@@ -26,7 +26,18 @@ public class Reader {
     public init() {}
 
     public func read(resource: String, ofType type: String) throws -> String {
+        #if os(Linux)
+        // copied from https://github.com/IBM-Swift/Bridging/blob/master/Sources/Bridging/FoundationAdapterLinux.swift
+        //
+        // Bundle(for:) is not yet implemented on Linux
+        //TODO remove this ifdef once Bundle(for:) is implemented
+        // issue https://bugs.swift.org/browse/SR-953
+        // meanwhile return a Bundle whose resource path points to /Resources directory
+        //     inside the resourcePath of Bundle.main (e.g. .build/debug/Resources)
+        let bundle = Bundle(path: (Bundle.main.resourcePath ?? ".") + "/Resources") ?? Bundle.main
+        #else
         let bundle = Bundle(for: Swift.type(of: self))
+        #endif
         // uncomment the following lines to print the directory
         // the resource files are expected to be located
         //print(bundle.resourcePath ?? "no resource path provided")
